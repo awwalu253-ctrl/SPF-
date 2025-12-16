@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Reveddy Skincare</title>
+    <link rel="stylesheet" href="../style.css/product.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
+        <div class="logo">Skin-Pore-Fection</div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="product.html" class="active">Products</a></li> 
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-icons">
+            <div class="search-box">
+                <span id="search-icon" title="Search"><i class="fas fa-search"></i></span>
+                <input type="text" placeholder="Search products..." id="search-input">
+            </div>
+            <span id="cart-icon" title="Cart"><i class="fas fa-shopping-cart"></i></span>
+            <span id="cart-count-badge" class="cart-count-badge">0</span>
+            <a href="product.html" class="shop-now-button">Shop Now</a>
+        </div>
+    </header>
+
+    <div id="notification-bar" class="notification-bar">
+    <i class="fas fa-check-circle"></i> Item added to cart successfully!
+</div>
+
+    <div class="header-spacer"></div>
+
+    <section class="products-hero fade-in">
+        <h1 class="products-main-heading">Our Products</h1>
+        <p class="products-subtitle">Discover our complete range of premium skincare solutions, each carefully formulated with natural ingredients to address your unique skin needs.</p>
+    </section>
+
+    <section class="product-filters fade-in">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="serums">Serums</button>
+            <button class="filter-btn" data-filter="moisturizers">Moisturizers</button>
+            <button class="filter-btn" data-filter="cleansers">Cleansers</button>
+            <button class="filter-btn" data-filter="masks">Masks</button>
+            <button class="filter-btn" data-filter="treatments">Treatments</button>
+        </div>
+    </section>
+
+
+    <section class="product-grid-section fade-in">
+    
+    <div id="no-match-message" style="display: none; text-align: center; padding: 50px 0;">
+        <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: #e81f5c; margin-bottom: 10px;"></i>
+        <h3 style="font-size: 1.5rem; color: #333;">No Products Found</h3>
+        <p style="color: #666;">Try adjusting your search filters or check your spelling.</p>
+    </div>
+
+    <div class="product-grid">
+        </div>
+</section>
+
+    <section class="product-grid-section fade-in">
+        <div class="product-grid">
+
+            <!-- product 1 -->
+
+                <div class="product-card" data-category="serums" data-name="Vitamin C Radiance Serum" data-price="68" data-image="../images/WhatsApp Image 2025-11-12 at 20.42.35_ba8515e5.jpg">
+
+                <div class="card-image-wrapper">
+                    <img src="../images/WhatsApp Image 2025-11-12 at 20.42.35_ba8515e5.jpg" alt="Vitamin C Radiance Serum">
+                    
+                    <span class="rating">4.8</span>
+                </div>
+
+                <h3 class="product-title">Vitamin C Radiance Serum</h3>
+
+                <p class="product-desc">Brightening serum with 15% Vitamin C for luminous skin.</p>
+
+                <div class="product-footer">
+                    <span class="product-price">$68</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+
+            <!-- product 2 -->
+
+                <div class="product-card" data-category="serums" data-name="Vitamin C Radiance Serum" data-price="68" data-image="../images/IMG-20251212-WA0005.jpg">
+
+                <div class="card-image-wrapper">
+                    <img src="../images/IMG-20251212-WA0005.jpg" height="500px" alt="Vitamin C Radiance Serum">
+                    
+                    <span class="rating">4.8</span>
+                </div>
+
+                <h3 class="product-title">Vitamin C Radiance Serum</h3>
+
+                <p class="product-desc">Brightening serum with 15% Vitamin C for luminous skin.</p>
+                
+                <div class="product-footer">
+                    <span class="product-price">$68</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            
+
+            <!-- product 3 -->
+
+                <div class="product-card" data-category="moisturizers" data-name="Hyaluronic Hydrating Cream" data-price="52" data-image="https://picsum.photos/seed/cream-white/400/500">
+                <div class="card-image-wrapper">
+                    <img src="../images/IMG-20251212-WA0006.jpg" alt="Hyaluronic Hydrating Cream">
+                    <span class="rating">4.5</span>
+                </div>
+                <h3 class="product-title">Hyaluronic Hydrating Cream</h3>
+                <p class="product-desc">Deep hydration with hyaluronic acid and ceramides.</p>
+                <div class="product-footer">
+                    <span class="product-price">$52</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+
+            <!-- product 4 -->
+            
+
+            <div class="product-card" data-category="cleansers" data-name="Gentle Foaming Cleanser" data-price="38" data-image="https://picsum.photos/seed/cleanser-pump/400/500">
+                <div class="card-image-wrapper">
+                    <img src="../images/IMG-20251212-WA0007.jpg" alt="Gentle Foaming Cleanser">
+                    <span class="rating">4.7</span>
+                </div>
+                <h3 class="product-title">Gentle Foaming Cleanser</h3>
+                <p class="product-desc">pH-balanced cleanser for all skin types.</p>
+                <div class="product-footer">
+                    <span class="product-price">$38</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+
+            <!-- product 5 -->
+
+            
+            <div class="product-card" data-category="treatments" data-name="Retinol Night Treatment" data-price="78" data-image="https://picsum.photos/seed/retinol-oil/400/500">
+                <div class="card-image-wrapper">
+                    <img src="../images/IMG-20251212-WA0009.jpg" alt="Retinol Night Treatment">
+                    <span class="rating">4.6</span>
+                </div>
+                <h3 class="product-title">Retinol Night Treatment</h3>
+                <p class="product-desc">Anti-aging formula with encapsulated retinol.</p>
+                <div class="product-footer">
+                    <span class="product-price">$78</span>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <div id="cartModal" class="modal">
+        <div class="modal-content shopping-cart-modal">
+            <span class="close-btn" style="margin-left: 400px; cursor: pointer; font-weight: bold;">&times;</span>
+            <h2>Shopping Cart</h2>
+            <div id="cartItems">
+                <div class="cart-empty-state">
+                    <i class="fas fa-shopping-cart cart-icon-large"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div id="cartSummary" style="display: none;">
+                <p>Subtotal: <span id="cartSubtotal">$0.00</span></p>
+                <button id="clear-cart-btn" class="clear-cart-btn">Clear Cart</button>
+                
+                <a href="proceed.html">
+                    <button class="checkout-btn">Proceed to Checkout</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="sitemap-footer fade-in">
+        </footer>
+    
+    <script src="./script.js/product.js"></script>
+</body>
+</html>

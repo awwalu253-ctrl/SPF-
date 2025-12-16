@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Skin-Pore-Fection (Nigeria)</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="/style.css/proceed.css">
+    
+    <script defer src="./script.js/proceed.js"></script> 
+</head>
+<body>
+    
+    <header class="header">
+        <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
+        <div class="logo">Skin-Pore-Fection</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="product.html" class="active">Products</a></li>
+                <li><a href="faqs.html">FAQ's</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+        
+
+        <div class="nav-icons">
+            
+            <div class="search-box">
+                <span id="search-icon" title="Search"><a style="color: black;" href="product.html"><i class="fas fa-search"></i></a></span>
+                
+                <input type="text" placeholder="Search products..." id="search-input">
+            </div>
+            
+            <span title="Cart"><i class="fas fa-shopping-cart"></i></span>
+            <a href="product.html" class="shop-now-button">Shop Now</a> 
+            </div>
+    </header>
+
+    <main class="checkout-container">
+        <h1 class="checkout-title">Checkout (Nigeria)</h1>
+
+        <div class="checkout-grid">
+            
+            <div class="checkout-form-column">
+                
+                <section class="contact-section">
+                    <h2>Contact Information</h2>
+                    <form>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number (+234)" required>
+                    </form>
+                </section>
+
+                <section class="shipping-section">
+                    <h2>Shipping Address</h2>
+                    <form>
+                        <div class="name-fields">
+                            <input type="text" placeholder="First Name" required>
+                            <input type="text" placeholder="Last Name" required>
+                        </div>
+                        <input type="text" placeholder="Street Address / House No." required>
+                        <input type="text" placeholder="Nearest Landmark (Optional)">
+                        
+                        <select id="state-selector" required>
+                            <option value="">Select State...</option>
+                            <option value="Lagos">Lagos</option>
+                            <option value="Abuja">FCT - Abuja</option>
+                            <option value="Rivers">Rivers</option>
+                            <option value="Ogun">Ogun</option>
+                            <option value="Kano">Kano</option>
+                            </select>
+
+                        <input type="text" placeholder="City / Local Government Area (LGA)" required>
+                        
+                        <input type="hidden" value="Nigeria">
+                        <p class="country-display">Shipping to: Nigeria</p>
+                    </form>
+                </section>
+
+                <section class="payment-section">
+                    <h2>Payment Method</h2>
+                    <div class="payment-options">
+                        <label>
+                            <input type="radio" name="payment_method" value="bank_transfer" > Bank Transfer (Pre-payment)
+                        </label>
+                        <label>
+                            <input type="radio" name="payment_method" value="cash_on_delivery" > Cash on Delivery (CoD)
+                        </label>
+                        
+                            <a href="banks.html" target="_blank" class="payment-instructions-link">Make Payments to our available Bank Account</a>
+                    </div>
+                    
+                    <form id="order-form">
+                        <button class="complete-order-btn" type="submit">Place Order - Pay ₦<span id="button-total-price">0.00</span></button>
+                    </form>
+                </section>
+
+            </div>
+
+            <div class="order-summary-column">
+                <section class="order-summary-box">
+                    <h3>Order Summary</h3>
+                    
+                    <div id="checkout-cart-items" class="checkout-cart-items">
+                        </div>
+
+                    <div class="summary-details">
+                        <div class="summary-row"><span>Subtotal</span><span id="summary-subtotal">₦0.00</span></div>
+                        <div class="summary-row"><span>Shipping Fee</span><span id="summary-shipping">₦1,500.00</span></div> 
+                        
+                        <div class="summary-row total-row"><span>Total</span><span id="summary-total">₦0.00</span></div>
+                    </div>
+
+                    <a href="product.html">
+                        <button class="more">Add More To Cart</button>
+                    </a>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

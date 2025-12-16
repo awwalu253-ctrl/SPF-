@@ -1,0 +1,1091 @@
+:root {
+    /* Define color variables for consistency */
+    --color-primary: #1e3a8a;
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-background-light: #f9fafb;
+    --color-cta-button: #e81f5c;
+    --color-footer-bg: #111827; /* Dark background */
+    --color-footer-link: #9ca3af;
+    --color-footer-separator: #374151;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Adjust if a specific font is used */
+}
+
+body {
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from off-screen elements */
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- GLOBAL ANIMATION STYLES (FADE-IN) --- */
+/* -------------------------------------------------------------------------- */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1.5s ease-out; 
+}
+
+/* Ensure the JS sets the style attribute, or use this if JS toggles a class */
+/* If using the JS from our last update, the JS handles setting opacity: 1; */
+
+
+/* -------------------------------------------------------------------------- */
+/* --- HEADER / NAVIGATION (Transparent-to-White Scroll Animation) --- */
+/* -------------------------------------------------------------------------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent; 
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 500;
+    box-shadow: none; 
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+    padding: 0.75rem 5%;
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    letter-spacing: -0.5px; 
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--color-cta-button);
+    /* text-decoration: line-through; */
+}
+
+.nav-links a.active::after{
+    color: var(--color-cta-button );
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Thickness of the underline */
+    background-color: var(--color-cta-button); /* The pink/red color */
+    left: 50%;
+    bottom: -5px; /* Position the line below the text */
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+
+}
+
+.nav-links a.active::after{
+    width: 100%;
+}
+
+
+/* --- HEADER ICONS & INLINE SEARCH BAR --- */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.nav-icons span { 
+    cursor: pointer; 
+    transition: color 0.3s ease, transform 0.2s ease; 
+}
+.nav-icons span:hover { 
+    color: var(--color-cta-button); 
+    transform: scale(1.1);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+#search-icon {
+    cursor: pointer;
+}
+
+/* Initial State: Input is hidden (width: 0) */
+#search-input {
+    border: none;
+    border-bottom: 2px solid transparent; 
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    outline: none;
+    width: 0; 
+    padding-left: 0;
+    transition: width 0.3s ease-out, border-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Placeholder Styling */
+#search-input::placeholder {
+    color: #a0a0a0; 
+    font-weight: 400; 
+    opacity: 1;
+    transition: color 0.3s ease;
+}
+
+#search-input:focus::placeholder {
+    color: #cccccc;
+}
+
+/* Target State: Input slides open */
+#search-input.open {
+    width: 200px; /* Desired width when open */
+    border-bottom-color: var(--color-cta-button); 
+    padding-left: 5px;
+    padding-bottom: 5px; 
+}
+
+.shop-now-button {
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 3px 10px rgba(232, 31, 92, 0.2);
+}
+.shop-now-button:hover {
+    background-color: #d11c4e;
+    transform: translateY(-1px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- MAIN CONTENT SECTIONS (INDEX PAGE) --- */
+/* -------------------------------------------------------------------------- */
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0;
+}
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Replace background with your actual image or keep the placeholder */
+    background: linear-gradient(180deg, rgba(230, 245, 250, 0.5), rgba(150, 200, 220, 0.5)), 
+                url('https://picsum.photos/seed/skincare/1920/1080');
+    background-size: cover;
+    background-position: center bottom;
+    z-index: 1;
+    animation: subtle-pan 20s infinite alternate ease-in-out;
+}
+@keyframes subtle-pan {
+    0% { background-position: center bottom; }
+    100% { background-position: 50.5% bottom; }
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+.hero-text { max-width: 50%; }
+.hero-text h1 { 
+    font-size: 4.5rem; 
+    font-weight: 900; 
+    line-height: 1.1; 
+    margin-bottom: 1.5rem; 
+    color: var(--color-text-dark); 
+    /* Add styling for the specific Serif font if possible */
+}
+.hero-text p { font-size: 1.1rem; margin-bottom: 2rem; max-width: 80%; }
+.cta-button { 
+    padding: 0.8rem 2rem; 
+    background-color: var(--color-cta-button); 
+    color: var(--color-text-light); 
+    text-decoration: none; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 5px; 
+    transition: background-color 0.3s ease, transform 0.1s ease; 
+    box-shadow: 0 5px 15px rgba(232, 31, 92, 0.3); 
+    display: inline-block;
+}
+.cta-button:hover { background-color: #d11c4e; transform: translateY(-2px); }
+
+.hero-tagline {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    align-self: flex-end;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Products Section */
+.products-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+.products-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 3rem; }
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2rem; 
+    margin-bottom: 2rem; 
+}
+.product-card { 
+    background-color: #fff; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+.product-card img { width: 100%; height: 300px; object-fit: cover; display: block; border-bottom: 1px solid #eee; }
+.product-info { padding: 1.5rem; }
+.product-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.product-info p { font-size: 1rem; color: #666; margin-bottom: 1rem; }
+.product-info .price { font-weight: bold; color: var(--color-cta-button); }
+
+.secondary-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-text-dark); 
+    background-color: transparent;
+    border: 2px solid var(--color-text-dark); 
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.secondary-button:hover {
+    color: var(--color-text-light); 
+    background-color: var(--color-text-dark); 
+}
+
+/* CTA Footer Section (Index page version) */
+.cta-footer { 
+    background-color: var(--color-footer-bg); 
+    color: var(--color-text-light); 
+    padding: 5rem 5%; 
+    text-align: center; 
+}
+.cta-footer-content { max-width: 800px; margin: 0 auto; }
+.cta-footer h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.5px; }
+.cta-footer p { font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+
+/* -------------------------------------------------------------------------- */
+/* --- ABOUT US PAGE SECTIONS --- */
+/* -------------------------------------------------------------------------- */
+
+.header-spacer {
+    height: 80px; 
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    color: var(--color-text-dark);
+    text-align: center;
+}
+
+.about-story-hero {
+    padding: 3rem 5% 5rem;
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.story-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.story-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.wisdom-section {
+    padding: 4rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.wisdom-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 5rem;
+}
+
+.wisdom-text {
+    padding-right: 2rem;
+}
+
+.wisdom-text .small-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.wisdom-text .main-heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--color-text-dark);
+}
+
+.wisdom-text p {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+}
+
+/* Quote Box Style */
+.quote-box {
+    /* background-color: var(--color-background-light);  */
+    padding: 2.5rem;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.quote-content {
+    background-color: #fff;
+    padding: 3rem;
+    margin-left: -50px;
+    width: 400px;
+    margin-top: 150px;
+    border-radius: 8px;
+    border-left: 5px solid var(--color-cta-button);
+    box-shadow: 10px 10px 20px;
+}
+
+.quote {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.quote-author {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.quote-author img {
+    border-radius: 50%;
+    margin-right: 1rem;
+    width: 70px;
+    height: 50px;
+}
+
+
+/* --- ABOUT US PAGE STYLES - ARROW ICON --- */
+
+/* Ensure the Quote Box itself is the positioning context (already done, but good check) */
+.quote-box {
+    position: relative; /* Must be relative for the arrow to be positioned absolutely inside it */
+    /* ... existing quote-box styles ... */
+}
+
+.quote-action-arrow {
+    position: absolute;
+    bottom: 50px; /* Position it slightly outside and below the box edge */
+    right:80px; /* Position it slightly outside and to the right of the box edge */
+    
+    /* Styling for the circle and icon */
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-cta-button); /* Match your pink accent color */
+    color: var(--color-text-light);
+    border-radius: 50%;
+    
+    /* Center the arrow icon inside the circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    transform: translatex(-50%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+.quote-action-arrow:hover {
+    background-color: #d11c4e; /* Slightly darker pink on hover */
+    transform: scale(1.05);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay */
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Bio card */
+.bio-card {
+  background: white;
+  width: 420px;
+  height: 90vh;
+  margin: auto 400px;
+  margin-left: 50px;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+
+/* Slide in */
+.overlay.show .bio-card {
+  transform: translateX(0);
+}
+
+/* Image */
+.bio-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  overflow-x: auto;
+}
+
+
+.bio-content h2 {
+  margin: 0;
+}
+
+.bio-content span {
+  color: gray;
+  font-size: 14px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: white;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay */
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Bio card */
+.bio-card {
+  background: white;
+  width: 420px;
+  height: 70vh;
+  margin: auto 400px;
+  margin-top: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 1000;
+}
+
+/* Slide in */
+.overlay.show .bio-card {
+  transform: translateX(0);
+}
+
+/* Image */
+.bio-scroll img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.bio-scroll{
+    height: 100%;
+    overflow-y: auto;
+}
+.bio-content h2 {
+  margin: 0;
+}
+
+.bio-content span {
+  color: gray;
+  font-size: 14px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  background: white;
+  font-size: 20px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+
+/* Ensure the quote-content is not hiding the arrow on small screens */
+@media (max-width: 1024px) {
+    /* Adjust position if necessary on smaller devices */
+    .quote-action-arrow {
+        bottom: 10px; 
+        right: 10px;
+    }
+}
+
+
+/* Values Section */
+.values-section {
+    padding: 6rem 5%;
+    background-color: var(--color-background-light);
+    text-align: center;
+}
+
+.values-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.value-card i {
+    font-size: 2.5rem;
+    color: var(--color-cta-button);
+    margin-bottom: 0.8rem;
+}
+
+.value-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Meet Our Team Section */
+.team-section {
+    padding: 6rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.team-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 3rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.team-member p {
+    color: var(--color-cta-button);
+    font-weight: 500;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* --- FOOTER STYLES (MATCHES VIDEO) --- */
+/* -------------------------------------------------------------------------- */
+.sitemap-footer { 
+    background-color: var(--color-footer-bg); /* Dark background: #111827 */
+    color: #9ca3af; /* Light grey text */
+    padding: 3rem 5%;
+}
+
+.sitemap-footer a{
+    text-decoration: none;
+}
+
+.sitemap-footer h4 {
+    color: var(--color-text-light); /* White/very light color for headings */
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.sitemap-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sitemap-footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sitemap-footer ul li a {
+    color: var(--color-footer-link);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.sitemap-footer ul li a:hover {
+    color: var(--color-cta-button); /* Highlight link on hover */
+}
+
+
+/* --- Grid Layout for Sitemap Links --- */
+.sitemap-grid {
+    display: grid;
+    /* Creates a 4-column layout for the link sections */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-footer-separator); /* Subtle separator line */
+}
+
+
+/* --- Bottom Footer Section (Newsletter, Logo, Social) --- */
+.footer-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align top for newsletter content */
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Newsletter Box --- */
+.newsletter-box {
+    flex-basis: 35%; /* Gives more space to the newsletter */
+}
+
+.newsletter-box p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.newsletter-box input {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-footer-separator);
+    background-color: #2c3445; /* Slightly lighter dark background for the input */
+    color: var(--color-text-light);
+    border-radius: 5px 0 0 5px;
+    width: 65%;
+    outline: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.newsletter-box button {
+    padding: 0.7rem 1rem;
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.newsletter-box button:hover {
+    background-color: #d11c4e;
+}
+
+/* --- Footer Logo Text (SKINCARE) --- */
+.footer-logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--color-cta-button);
+    opacity: 0.8;
+    align-self: center; /* Center vertically */
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* --- Social Links --- */
+.footer-social-links a {
+    color: var(--color-footer-link);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    color: var(--color-cta-button);
+}
+
+/* --- Copyright Bar --- */
+.copyright {
+    text-align: center;
+    font-size: 0.85rem;
+    padding-top: 1rem;
+    color: var(--color-footer-separator);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Footer Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .sitemap-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+    .footer-bottom-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .newsletter-box {
+        flex-basis: 100%;
+        max-width: 450px;
+    }
+    .footer-logo-text {
+        order: -1; /* Move logo to the top of the column stack */
+        margin-bottom: 1.5rem;
+    }
+    .footer-social-links {
+        margin-top: 1.5rem;
+    }
+    .newsletter-box input {
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px) {
+    .sitemap-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    .newsletter-box input,
+    .newsletter-box button {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        border-radius: 5px;
+        /* Fix overlapping borders on mobile stack */
+        border-radius: 5px;
+    }
+    .newsletter-box input {
+        margin-bottom: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- RESPONSIVENESS (TABLET & MOBILE) --- */
+/* -------------------------------------------------------------------------- */
+
+/* Target: Tablets and smaller desktops (Max width 1024px) */
+@media (max-width: 1024px) {
+    
+    /* Global Adjustments */
+    .header {
+        padding: 1.5rem 3%;
+    }
+    .header.scrolled {
+        padding: 0.75rem 3%;
+    }
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    /* Wisdom Section Layout Adjustment */
+    .wisdom-grid {
+        grid-template-columns: 1fr; /* Stack into a single column */
+        gap: 3rem;
+    }
+
+    .wisdom-text {
+        padding-right: 0;
+    }
+
+    /* Quote Box & Bio Card adjustments */
+    .quote-box {
+        padding: 0; /* Remove padding as it's now full width */
+        align-items: center;
+    }
+    
+    .quote-content {
+        margin-left: 0; /* Reset negative margin */
+        width: 100%; /* Take full width */
+        padding: 2.5rem;
+        margin-top: 0; /* Reset margin top */
+    }
+
+    /* Reposition the arrow for the single-column layout */
+    .quote-action-arrow {
+        bottom: -25px; /* Move arrow closer to the center */
+        right: 50%;
+        transform: translatex(50%);
+    }
+
+    .bio-card {
+        /* Move bio card closer to the right edge of the screen */
+        margin: 120px 20px auto 20px; 
+    }
+}
+
+/* Target: Mobile Phones (Max width 768px) */
+@media (max-width: 768px) {
+    
+    /* Header/Navigation - Mobile Menu Setup */
+    /* NOTE: You will likely need JavaScript to properly hide/show the nav-links */
+    .nav-links, .nav-icons {
+        /* Temporarily hide for a cleaner view or style for a mobile menu toggle */
+        /* For a real site, these should be hidden and toggled with a hamburger menu */
+        display: none; 
+    }
+    .header {
+        justify-content: center; /* Center logo when nav is hidden */
+    }
+    .logo {
+        font-size: 1.25rem;
+    }
+    /* Re-show the logo and one icon for context */
+    .header img {
+        width: 60px;
+    }
+    .nav-icons .shop-now-button {
+        display: none; /* Hide secondary CTA on small screen */
+    }
+
+
+    /* About Hero Section */
+    .story-title {
+        font-size: 2.2rem;
+    }
+    .story-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Wisdom Section */
+    .wisdom-text .main-heading {
+        font-size: 2rem;
+    }
+
+    /* Values Section */
+    .values-grid {
+        /* 2 columns for a tighter grid on mobile/small tablet */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 1.5rem;
+    }
+    .value-card {
+        padding: 1.5rem;
+    }
+
+    /* Team Section */
+    .team-grid {
+        /* Stack team members vertically on small screens */
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+    .team-member img {
+        max-width: 200px;
+    }
+
+    /* Quote Box */
+    .quote-content {
+        width: 90%; /* Center the quote box by reducing its width */
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    
+    .quote-author img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .quote-action-arrow {
+        /* Keep it centered below the quote box */
+        bottom: -25px; 
+        right: 50%;
+        transform: translateX(50%);
+    }
+
+    .bio-card {
+        width: 90%; /* Make the bio card smaller */
+        margin: 10% auto; /* Center it more on the screen */
+        height: 80vh;
+    }
+
+    /* Footer (already good, but ensure everything stacks) */
+    .sitemap-grid {
+        grid-template-columns: 1fr; /* Stack all links vertically */
+        text-align: center;
+        gap: 2rem;
+    }
+    .footer-bottom-section {
+        /* Already defined well, but enforce full width newsletter elements */
+        align-items: center;
+    }
+    .newsletter-box input, .newsletter-box button {
+        width: auto; /* Allow buttons/inputs to size naturally */
+        display: inline-block;
+    }
+    .newsletter-box input {
+        border-radius: 5px 0 0 5px; /* Fix input border radius */
+    }
+}
+
+/* --- NEW: HAMBURGER ICON STYLES --- */
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+    z-index: 600; /* Ensure it's above the header content */
+}
+
+.menu-toggle:hover {
+    color: var(--color-cta-button);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- RESPONSIVENESS (TABLET & MOBILE) --- */
+/* -------------------------------------------------------------------------- */
+/* ... Existing 1024px media query ... */
+
+
+/* Target: Mobile Phones (Max width 768px) */
+@media (max-width: 768px) {
+    
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    /* Hide the primary navigation and most icons when closed */
+    .nav-links, .nav-icons {
+        display: none; 
+    }
+    
+    /* Re-show only the essential icons that should appear on the mobile view */
+    .nav-icons span[title="Cart"],
+    .nav-icons .search-box {
+        display: block; /* Show cart and search box near the toggle */
+    }
+
+    /* Adjust header layout for mobile */
+    .header {
+        justify-content: space-between; /* Use space-between now that we have the toggle */
+    }
+    
+    /* --- Full Mobile Menu (Requires JS to toggle 'mobile-menu-open' class) --- */
+    .header.mobile-menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px; /* Below the header */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 5%;
+        z-index: 499;
+    }
+}

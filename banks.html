@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Account Details</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script defer src="script.payment.js"></script> 
+    <style>
+        /* Specific CSS for the Instructions Page */
+        .instruction-container {
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .instruction-container h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .instruction-container p {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #777;
+        }
+        
+        /* Dropdown and Selection Area */
+        .select-payment-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .select-payment-section label {
+            display: block;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        #account-selector {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        /* Account Details Display Area */
+        #account-details-display {
+            border: 2px solid #f19f9f; /* Highlighted border */
+            padding: 25px;
+            border-radius: 6px;
+            background-color: #fff;
+            min-height: 150px; /* Ensures space when empty */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .account-info p {
+            text-align: left;
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+        .account-info strong {
+            display: inline-block;
+            min-width: 150px;
+            color: #333;
+            font-weight: 700;
+        }
+        .initial-message {
+            text-align: center;
+            color: #999;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <main class="instruction-container">
+        <h1>Complete Your Payment</h1>
+        <p>Please select your preferred payment method below. Your order will be confirmed and shipped once payment reflects.</p>
+        
+        <div class="select-payment-section">
+            <label for="account-selector">Select Bank or OPay Account:</label>
+            <select id="account-selector">
+                <option value="initial">--- Select an Option to View Details ---</option>
+                <option value="opay">🏦 Moniepoint</option>
+                <option value="access">🏦 Access Bank PLC</option>
+                <option value="zenith">🏦 Zenith Bank</option>
+            </select>
+        </div>
+
+        <div id="account-details-display">
+            <p class="initial-message">Account details will appear here once you make a selection.</p>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9em; color: #f19f9f;">
+            ⚠ IMPORTANT: Please send a screenshot of your payment confirmation to our WhatsApp number after transfer.
+        </p>
+        
+        <a href="proceed.html" class="back-to-shop-btn" style="display: block; width: 100%; text-align: center; margin-top: 20px; padding: 10px; background-color: #ddd; color: #333; border-radius: 4px; text-decoration: none;">
+            Return to Products
+        </a>
+    </main>
+
+    <script>
+        // script.payment.js
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selector = document.getElementById('account-selector');
+    const displayArea = document.getElementById('account-details-display');
+
+    // 1. Define the Account Data
+    const accounts = {
+        opay: {
+            name: "OPay Transfer",
+            details: [
+                { label: "Account Name", value: "[Your OPay Registered Name]" },
+                { label: "OPay Phone/Account", value: "90xxxxxxxxx" }
+            ],
+            note: "OPay transfers are usually instant."
+        },
+        access: {
+            name: "Access Bank PLC",
+            details: [
+                { label: "Account Name", value: "Skin-Pore-Fection Ventures" },
+                { label: "Account Number", value: "0123456789" },
+                { label: "Account Type", value: "Current" }
+            ],
+            note: "Transfers may take a few minutes to confirm."
+        },
+        zenith: {
+            name: "Zenith Bank",
+            details: [
+                { label: "Account Name", value: "Skin-Pore-Fection Logistics" },
+                { label: "Account Number", value: "5043210987" },
+                { label: "Account Type", value: "Savings" }
+            ],
+            note: "Transfers may take a few minutes to confirm."
+        }
+    };
+
+    // 2. Handle Dropdown Change
+    selector.addEventListener('change', (event) => {
+        const selectedKey = event.target.value;
+        displayArea.innerHTML = ''; // Clear previous content
+
+        if (selectedKey === 'initial') {
+            displayArea.innerHTML = '<p class="initial-message">Account details will appear here once you make a selection.</p>';
+            return;
+        }
+
+        const account = accounts[selectedKey];
+        
+        // 3. Build HTML for the Selected Account
+        let htmlContent = `<h3>${account.name}</h3><div class="account-info">`;
+
+        account.details.forEach(item => {
+            htmlContent += `<p><strong>${item.label}:</strong> ${item.value}</p>`;
+        });
+        
+        htmlContent += `</div><p style="margin-top: 15px; color: #f19f9f; font-size: 0.9em;">${account.note}</p>`;
+        
+        displayArea.innerHTML = htmlContent;
+    });
+
+});
+    </script>
+</body>
+</html>

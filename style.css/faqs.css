@@ -1,0 +1,537 @@
+:root {
+    --color-primary: #1e3a8a;
+    --color-secondary: #059669;
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-background-light: #f9fafb;
+    --color-cta-button: #e81f5c;
+    --color-footer-bg: #1f2937;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    line-height: 1.6;
+}
+
+/* --- Header / Navigation (CORRECTED: Transparent-to-White) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* STARTING STATE: Transparent background, dark text/icons */
+    background-color: transparent; 
+    padding: 1.5rem 5%; /* Initial large padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: none; /* No shadow initially */
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+    /* SCROLLED STATE: Solid white background, reduced padding, and a shadow */
+    padding: 0.75rem 5%;
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the logo, links, and icons are dark */
+.logo, 
+.nav-links a,
+.nav-icons span {
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    margin-left: -100px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--color-cta-button);
+    /* text-decoration: line-through; */
+}
+
+.nav-links a.active::after{
+    color: var(--color-cta-button );
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Thickness of the underline */
+    background-color: var(--color-cta-button); /* The pink/red color */
+    left: 50%;
+    bottom: -5px; /* Position the line below the text */
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+
+}
+
+.nav-links a.active::after{
+    width: 100%;
+}
+/* --- Inline Search Field (Flexbox Magic) --- */
+.nav-icons {
+    display: flex; /* Makes icons and search box align horizontally */
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    /* Temporarily remove default gap so icon and input are right next to each other */
+}
+
+/* 1. Initial State: Input is hidden */
+#search-input {
+    border: none;
+    border-bottom: 2px solid transparent; /* Start with transparent border */
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    outline: none;
+    
+    /* CRITICAL: Starts at 0 width and 0 padding */
+    width: 0; 
+    padding-left: 0;
+    
+    /* Animation transition property */
+    transition: width 0.3s ease-out, border-color 0.3s ease, padding 0.3s ease;
+    border-radius: 6px;
+}
+
+#search-input::placeholder{
+    color: #a0a0a0;
+    font-weight: 400;
+    opacity: 1;
+    transition:  color 0.3s ease;
+}
+
+#search-input:focus::placeholder{
+    color: #cccccc;
+}
+
+/* 2. Target State: Input slides open and gains focus styles */
+#search-input.open {
+    width: 200px; /* Desired width when open (Adjust this value) */
+    border-bottom-color: var(--color-cta-button); /* Underline appears */
+    padding-left: 5px;
+    padding-bottom: 5px; /* Add padding for the typing space */
+}
+
+/* Optional: Make the search icon interactive on its own */
+#search-icon {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+#search-icon:hover {
+    color: var(--color-cta-button);
+    transform: scale(1.1);
+}
+
+/* Fix: Adjust the header Z-index */
+.header {
+    /* ... existing styles ... */
+    z-index: 1000;
+}
+.header.scrolled {
+    /* ... existing styles ... */
+    z-index: 1000; /* Ensure the fixed header stays above the overlay when closed */
+}
+
+.shop-now-button {
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    height: 50px;
+    font-weight: bold;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease;
+}
+.shop-now-button:hover {
+    background-color: #d11c4e;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- FAQ PAGE STYLES (faq.html) --- */
+/* -------------------------------------------------------------------------- */
+.faq-section {
+    padding: 6rem 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.faq-main-heading {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    font-family: Lobster;
+    margin-top: 150px;
+}
+
+.faq-subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 3rem;
+    font-family: 'Arial', sans-serif;
+}
+
+/* --- Accordion Container --- */
+.accordion {
+    width: 100%;
+    margin-top: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-item {
+    border-bottom: 1px solid #eee;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+/* Accordion Header (The Question) */
+.accordion-header {
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    /* Use the primary font for the question text */
+    font-family: 'Georgia', serif; 
+    color: var(--color-text-dark);
+}
+
+.accordion-header:hover {
+    background-color: #f7f7f7;
+}
+
+/* The Icon */
+.accordion-header i {
+    transition: transform 0.3s ease;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Style when the accordion is active (open) */
+.accordion-header.active {
+    color: var(--color-cta-button);
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg);
+    color: var(--color-cta-button);
+}
+
+/* Accordion Content (The Answer) */
+.accordion-content {
+    background-color: #fcfcfc;
+    padding: 0 1.5rem;
+    overflow: hidden;
+    max-height: 0; /* CRITICAL: Hides the content initially */
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.accordion-content p {
+    padding: 1rem 0;
+    margin: 0;
+    color: #555;
+    line-height: 1.7;
+    /* Use Arial/Sans-serif for the answer text */
+    font-family: 'Arial', sans-serif; 
+}
+
+/* Style for open content */
+.accordion-content.open {
+    max-height: 500px; /* Needs to be larger than the content height */
+    padding-bottom: 1.5rem;
+}
+
+
+/* --- FAQ Contact Box --- */
+.faq-contact-box {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.headset-icon {
+    font-size: 3rem;
+    color: var(--color-cta-button);
+    margin-bottom: 1rem;
+}
+
+.still-have-questions {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    font-family: Lobster;
+}
+
+.faq-contact-box p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.faq-contact-box a{
+    text-decoration: none;
+}
+
+.contact-button:hover {
+    background-color: #d11c4e;
+}
+
+/* Responsive adjustment for FAQ */
+@media (max-width: 768px) {
+    .faq-main-heading {
+        font-size: 2.5rem;
+    }
+    .accordion-header {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    .accordion-content p {
+        padding: 0.5rem 0;
+    }
+    .faq-contact-box {
+        padding: 2rem 1rem;
+    }
+    .still-have-questions {
+        font-size: 1.5rem;
+    }
+}
+
+.sitemap-footer { 
+    background-color: var(--color-footer-bg); /* Dark background: #111827 */
+    color: #9ca3af; /* Light grey text */
+    padding: 3rem 5%;
+}
+
+.sitemap-footer a{
+    text-decoration: none;
+}
+
+.sitemap-footer h4 {
+    color: var(--color-text-light); /* White/very light color for headings */
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.sitemap-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sitemap-footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sitemap-footer ul li a {
+    color: var(--color-footer-link);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.sitemap-footer ul li a:hover {
+    color: var(--color-cta-button); /* Highlight link on hover */
+}
+
+
+/* --- Grid Layout for Sitemap Links --- */
+.sitemap-grid {
+    display: grid;
+    /* Creates a 4-column layout for the link sections */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-footer-separator); /* Subtle separator line */
+}
+
+
+/* --- Bottom Footer Section (Newsletter, Logo, Social) --- */
+.footer-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align top for newsletter content */
+    gap: 2rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Newsletter Box --- */
+.newsletter-box {
+    flex-basis: 35%; /* Gives more space to the newsletter */
+}
+
+.newsletter-box p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.newsletter-box input {
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--color-footer-separator);
+    background-color: #2c3445; /* Slightly lighter dark background for the input */
+    color: var(--color-text-light);
+    border-radius: 5px 0 0 5px;
+    width: 65%;
+    outline: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.newsletter-box button {
+    padding: 0.7rem 1rem;
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.newsletter-box button:hover {
+    background-color: #d11c4e;
+}
+
+/* --- Footer Logo Text (SKINCARE) --- */
+.footer-logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--color-cta-button);
+    opacity: 0.8;
+    align-self: center; /* Center vertically */
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* --- Social Links --- */
+.footer-social-links a {
+    color: var(--color-footer-link);
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social-links a:hover {
+    color: var(--color-cta-button);
+}
+
+/* --- Copyright Bar --- */
+.copyright {
+    text-align: center;
+    font-size: 0.85rem;
+    padding-top: 1rem;
+    color: var(--color-footer-separator);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Footer Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .sitemap-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+    .footer-bottom-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .newsletter-box {
+        flex-basis: 100%;
+        max-width: 450px;
+    }
+    .footer-logo-text {
+        order: -1; /* Move logo to the top of the column stack */
+        margin-bottom: 1.5rem;
+    }
+    .footer-social-links {
+        margin-top: 1.5rem;
+    }
+    .newsletter-box input {
+        width: 60%;
+    }
+}
+
+@media (max-width: 576px) {
+    .sitemap-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+    .newsletter-box input,
+    .newsletter-box button {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        border-radius: 5px;
+        /* Fix overlapping borders on mobile stack */
+        border-radius: 5px;
+    }
+    .newsletter-box input {
+        margin-bottom: 0;
+    }
+}
