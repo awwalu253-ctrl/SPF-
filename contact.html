@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +13,18 @@
 </head>
 <body>
 
-    <header class="header">
+   <header class="header">
         <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
         <div class="logo">Skin-Pore-Fection</div>
+        
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" >About Us</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li><a href="product.html">Products</a></li>
                 <li><a href="faqs.html">FAQs</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
@@ -25,13 +32,14 @@
         </nav>
         <div class="nav-icons">
             <div class="search-box">
-                <span id="search-icon" title="Search"><a href="product.html" style="color: black;"><i class="fas fa-search"></i></a></span>
+                <span id="search-icon" title="Search"><a color: black; href="product.html"><i class="fas fa-search"></i></a></span>
                 <input type="text" placeholder="Search products..." id="search-input">
             </div>
             <span title="Cart"><i class="fas fa-shopping-cart"></i></span>
-            <a href="#" class="shop-now-button">Shop Now</a>
+            <a href="product.html" class="shop-now-button">Shop Now</a>
         </div>
     </header>
+
 
 
     <div class="header-spacer"></div>
@@ -160,6 +168,6 @@
     </footer>
     
 
-<script src="../script.js/contact.js"></script>
+<script src="script.js/contact.js"></script>
 </body>
 </html>

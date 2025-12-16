@@ -352,5 +352,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial render to load stored cart data and set badge
     renderCart(); 
 
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const header = document.querySelector('.header');
+
+    if (menuToggle && header) {
+        menuToggle.addEventListener('click', () => {
+            // This class is checked in the CSS media query to show the links
+            header.classList.toggle('mobile-menu-open');
+        });
+    }
+
 });
 

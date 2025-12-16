@@ -1,63 +1,76 @@
 :root {
+    /* Define color variables for consistency */
     --color-primary: #1e3a8a;
-    --color-secondary: #059669;
     --color-text-dark: #333;
     --color-text-light: #fff;
     --color-background-light: #f9fafb;
     --color-cta-button: #e81f5c;
-    --color-footer-bg: #1f2937;
+    --color-footer-bg: #111827; /* Dark background */
+    --color-footer-link: #9ca3af;
+    --color-footer-separator: #374151;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif; /* Adjust if a specific font is used */
 }
 
 body {
     color: var(--color-text-dark);
     background-color: var(--color-background-light);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from off-screen elements */
 }
 
-/* --- Header / Navigation (CORRECTED: Transparent-to-White) --- */
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- GLOBAL ANIMATION STYLES (FADE-IN) --- */
+/* -------------------------------------------------------------------------- */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1.5s ease-out; 
+}
+
+/* Ensure the JS sets the style attribute, or use this if JS toggles a class */
+/* If using the JS from our last update, the JS handles setting opacity: 1; */
+
+
+/* -------------------------------------------------------------------------- */
+/* --- HEADER / NAVIGATION (Transparent-to-White Scroll Animation) --- */
+/* -------------------------------------------------------------------------- */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* STARTING STATE: Transparent background, dark text/icons */
     background-color: transparent; 
-    padding: 1.5rem 5%; /* Initial large padding */
+    padding: 1.5rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
-    box-shadow: none; /* No shadow initially */
+    z-index: 500;
+    box-shadow: none; 
     transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header.scrolled {
-    /* SCROLLED STATE: Solid white background, reduced padding, and a shadow */
     padding: 0.75rem 5%;
     background-color: #fff;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Ensure the logo, links, and icons are dark */
-.logo, 
-.nav-links a,
-.nav-icons span {
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    letter-spacing: -0.5px; 
     color: var(--color-text-dark);
     transition: color 0.3s ease;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: -0.5px;
-    margin-left: -50px;
 }
 
 .nav-links {
@@ -96,75 +109,64 @@ body {
     width: 100%;
 }
 
-/* --- Inline Search Field (Flexbox Magic) --- */
+
+/* --- HEADER ICONS & INLINE SEARCH BAR --- */
 .nav-icons {
-    display: flex; /* Makes icons and search box align horizontally */
+    display: flex;
     align-items: center;
     gap: 1rem;
     font-size: 1.25rem;
 }
 
+.nav-icons span { 
+    cursor: pointer; 
+    transition: color 0.3s ease, transform 0.2s ease; 
+}
+.nav-icons span:hover { 
+    color: var(--color-cta-button); 
+    transform: scale(1.1);
+}
+
 .search-box {
     display: flex;
     align-items: center;
-    /* Temporarily remove default gap so icon and input are right next to each other */
 }
 
-/* 1. Initial State: Input is hidden */
+#search-icon {
+    cursor: pointer;
+}
+
+/* Initial State: Input is hidden (width: 0) */
 #search-input {
     border: none;
-    border-bottom: 2px solid transparent; /* Start with transparent border */
+    border-bottom: 2px solid transparent; 
     font-size: 1rem;
     padding: 0;
     margin-left: 0.5rem;
     outline: none;
-    
-    /* CRITICAL: Starts at 0 width and 0 padding */
     width: 0; 
     padding-left: 0;
-    
-    /* Animation transition property */
     transition: width 0.3s ease-out, border-color 0.3s ease, padding 0.3s ease;
-    border-radius: 6px;
 }
 
-#search-input::placeholder{
-    color: #a0a0a0;
-    font-weight: 400;
+/* Placeholder Styling */
+#search-input::placeholder {
+    color: #a0a0a0; 
+    font-weight: 400; 
     opacity: 1;
-    transition:  color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-#search-input:focus::placeholder{
+#search-input:focus::placeholder {
     color: #cccccc;
 }
 
-/* 2. Target State: Input slides open and gains focus styles */
+/* Target State: Input slides open */
 #search-input.open {
-    width: 200px; /* Desired width when open (Adjust this value) */
-    border-bottom-color: var(--color-cta-button); /* Underline appears */
+    width: 200px; /* Desired width when open */
+    border-bottom-color: var(--color-cta-button); 
     padding-left: 5px;
-    padding-bottom: 5px; /* Add padding for the typing space */
-}
-
-/* Optional: Make the search icon interactive on its own */
-#search-icon {
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.2s ease;
-}
-#search-icon:hover {
-    color: var(--color-cta-button);
-    transform: scale(1.1);
-}
-
-/* Fix: Adjust the header Z-index */
-.header {
-    /* ... existing styles ... */
-    z-index: 1000;
-}
-.header.scrolled {
-    /* ... existing styles ... */
-    z-index: 1000; /* Ensure the fixed header stays above the overlay when closed */
+    padding-bottom: 5px; 
 }
 
 .shop-now-button {
@@ -173,13 +175,18 @@ body {
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    height: 50px;
     font-weight: bold;
     margin-left: 1rem;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 3px 10px rgba(232, 31, 92, 0.2);
 }
 .shop-now-button:hover {
     background-color: #d11c4e;
+    transform: translateY(-1px);
+}
+
+.header-spacer{
+    height: 120px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -554,4 +561,162 @@ body {
     .newsletter-box input {
         margin-bottom: 0;
     }
+}
+
+@media (max-width: 576px) {
+
+    /* ---------- HEADER ---------- */
+    .header {
+        padding: 0.7rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        display: none;
+    }
+
+    .header.mobile-menu-open nav {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.5rem 0;
+        text-align: center;
+    }
+
+    .nav-icons {
+        gap: 0.6rem;
+        font-size: 1.1rem;
+    }
+
+    .shop-now-button {
+        display: none;
+    }
+
+    #search-input.open {
+        width: 140px;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-title {
+        font-size: 2rem;
+        margin-top: 120px;
+    }
+
+    .contact-subtitle {
+        font-size: 1rem;
+    }
+
+    .contact-section {
+        padding: 1.5rem 1rem 4rem;
+    }
+
+    .contact-form-box {
+        padding: 1.5rem;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer-logo-text {
+        font-size: 2rem;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+
+    /* HEADER */
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        display: none;
+    }
+
+    .header.mobile-menu-open nav {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    .shop-now-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* CONTACT GRID */
+    .contact-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-image-box {
+        display: none;
+    }
+
+    .contact-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+@media (max-width: 1200px) {
+
+    .header {
+        padding: 1rem 4%;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .contact-grid-container {
+        gap: 2rem;
+    }
+}
+
+
+@media (min-width: 1400px) {
+
+    .header {
+        padding: 1.5rem 8%;
+    }
+
+    .contact-section {
+        max-width: 1400px;
+    }
+
+    .sitemap-footer {
+        padding: 4rem 8%;
+    }
+}
+
+.nav-icons{
+    display: none;
 }

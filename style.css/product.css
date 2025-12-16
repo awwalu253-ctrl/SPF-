@@ -102,6 +102,7 @@ body {
     align-items: center;
     gap: 1rem;
     font-size: 1.25rem;
+    position: relative;
 }
 
 .search-box {
@@ -694,4 +695,213 @@ body {
     padding-top: 1rem; }
 .checkout-btn { 
     width: 100%; 
+}
+
+/* --- NEW: HAMBURGER ICON STYLES --- */
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+    z-index: 600; /* Ensure it's above the header content */
+}
+
+.menu-toggle:hover {
+    color: var(--color-cta-button);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- RESPONSIVENESS (TABLET & MOBILE) --- */
+/* -------------------------------------------------------------------------- */
+/* ... Existing 1024px media query ... */
+
+
+/* Target: Mobile Phones (Max width 768px) */
+@media (max-width: 768px) {
+    
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    /* Hide the primary navigation and most icons when closed */
+    .nav-links, .nav-icons {
+        display: none; 
+    }
+    
+    /* Re-show only the essential icons that should appear on the mobile view */
+    .nav-icons span[title="Cart"],
+    .nav-icons .search-box {
+        display: block; /* Show cart and search box near the toggle */
+    }
+
+    /* Adjust header layout for mobile */
+    .header {
+        justify-content: space-between; /* Use space-between now that we have the toggle */
+    }
+    
+    /* --- Full Mobile Menu (Requires JS to toggle 'mobile-menu-open' class) --- */
+    .header.mobile-menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px; /* Below the header */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 5%;
+        z-index: 499;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE LAYOUT — ALL DEVICES
+   ========================================================= */
+
+/* ---------- Tablets & Small Laptops (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+    .header {
+        padding: 1rem 4%;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+        margin-left: 0;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    }
+}
+
+
+/* ---------- Mobile & Tablets (≤ 768px) ---------- */
+@media (max-width: 768px) {
+
+    /* HEADER STRUCTURE */
+    .header {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        padding: 0.8rem 4%;
+        row-gap: 0.6rem;
+    }
+
+    /* LOGO + BRAND NAME + MENU TOGGLE */
+    .header img,
+    .logo,
+    .menu-toggle {
+        grid-row: 1;
+    }
+
+    .header img {
+        grid-column: 1;
+        margin-left: 25px;
+    }
+
+    .logo {
+        grid-column: 1;
+        margin-left: 130px;
+        font-size: 1.2rem;
+    }
+
+    .menu-toggle {
+        grid-column: 2;
+        justify-self: end;
+        display: block;
+        font-size: 1.6rem;
+    }
+
+    /* SEARCH + CART UNDER LOGO */
+    .nav-icons {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: -20px;
+        position: relative;
+    }
+
+    /* HIDE SHOP NOW BUTTON */
+    .shop-now-button {
+        display: none;
+    }
+
+    /* SEARCH INPUT SIZE */
+    #search-input.open {
+        width: 160px;
+    }
+
+    /* CART BADGE — FIXED */
+    .cart-count-badge {
+        position: absolute;
+        top: -6px;
+        right: 40%;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+        min-width: 18px;
+    }
+
+    /* MOBILE NAV MENU */
+    .nav-links {
+        display: none;
+    }
+
+    .header.mobile-menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 1.2rem 5%;
+        gap: 1rem;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .products-hero{
+        margin-top: 100px;
+    }
+}
+
+
+/* ---------- Small Phones (≤ 480px) ---------- */
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 1.05rem;
+    }
+
+    .menu-toggle {
+        font-size: 1.4rem;
+    }
+
+    .nav-icons {
+        gap: 1.5rem;
+    }
+
+    #search-input.open {
+        width: 130px;
+        font-size: 0.9rem;
+    }
+
+    .cart-count-badge {
+        right: 38%;
+        font-size: 0.65rem;
+    }
+
+    .products-main-heading {
+        font-size: 2rem;
+    }
+
+    .products-subtitle {
+        font-size: 0.95rem;
+    }
 }

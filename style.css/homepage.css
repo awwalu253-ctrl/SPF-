@@ -298,7 +298,7 @@ body {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     max-width: 280px;
     align-self: flex-end;
-    margin-bottom: -3z0px;
+    margin-bottom: -30px;
     text-align: center;
 }
 
@@ -621,4 +621,175 @@ body {
     .newsletter-box input {
         margin-bottom: 0;
     }
+}
+
+
+/* --- NEW: HAMBURGER ICON STYLES --- */
+.menu-toggle {
+    display: none; /* Hide by default on desktop */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+    z-index: 600; /* Ensure it's above the header content */
+}
+
+.menu-toggle:hover {
+    color: var(--color-cta-button);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- RESPONSIVENESS (TABLET & MOBILE) --- */
+/* -------------------------------------------------------------------------- */
+/* ... Existing 1024px media query ... */
+
+
+/* Target: Mobile Phones (Max width 768px) */
+@media (max-width: 768px) {
+    
+    /* Show the hamburger icon */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    /* Hide the primary navigation and most icons when closed */
+    .nav-links, .nav-icons {
+        display: none; 
+    }
+    
+    /* Re-show only the essential icons that should appear on the mobile view */
+    .nav-icons span[title="Cart"],
+    .nav-icons .search-box {
+        display: block; /* Show cart and search box near the toggle */
+    }
+
+    /* Adjust header layout for mobile */
+    .header {
+        justify-content: space-between; /* Use space-between now that we have the toggle */
+        gap: 10px;
+    }
+    
+    header .logo{
+        margin-left: 2px;
+        font-size: 19px;
+    }
+
+    /* --- Full Mobile Menu (Requires JS to toggle 'mobile-menu-open' class) --- */
+    .header.mobile-menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px; /* Below the header */
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem 5%;
+        z-index: 499;
+    }
+
+
+    /* ======================================================
+   RESPONSIVE HERO SECTION
+   ====================================================== */
+
+/* ---------- Large Tablets (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        margin-top: 120px;
+    }
+
+    .hero-text h1 {
+        font-size: 4rem;
+    }
+
+    .hero-text p {
+        max-width: 100%;
+    }
+
+    .hero-tagline {
+        align-self: flex-start;
+        margin-bottom: 0;
+    }
+}
+
+/* ---------- Tablets & Small Laptops (≤ 768px) ---------- */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        padding-bottom: 4rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        margin-top: 110px;
+    }
+
+    .hero-text h1 {
+        font-size: 3.2rem;
+        line-height: 1.15;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-text .cta-button {
+        display: inline-block;
+        margin-top: 1rem;
+    }
+
+    .hero-tagline {
+        max-width: 90%;
+        margin-top: 2rem;
+        align-self: center;
+    }
+}
+
+/* ---------- Mobile Phones (≤ 480px) ---------- */
+@media (max-width: 480px) {
+    .hero-section {
+        padding-bottom: 3rem;
+    }
+
+    .hero-text {
+        margin-top: 90px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-text p {
+        font-size: 0.95rem;
+    }
+
+    .hero-text .cta-button {
+        padding: 0.7rem 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-tagline {
+        padding: 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+
 }

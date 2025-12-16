@@ -418,3 +418,89 @@ body {
     background-color: #f82a68;
 }
 
+@media (max-width: 992px) {
+
+    /* HEADER */
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo{
+        margin-left: 5px;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        display: none;
+    }
+
+    .header.mobile-menu-open nav {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        text-align: center;
+        
+    }
+
+    .shop-now-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* CONTACT GRID */
+    .contact-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-image-box {
+        display: none;
+    }
+
+    .contact-title {
+        font-size: 2.5rem;
+    }
+}
+
+
+@media (max-width: 1200px) {
+
+    .header {
+        padding: 1rem 4%;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .contact-grid-container {
+        gap: 2rem;
+    }
+}
+
+
+@media (min-width: 1400px) {
+
+    .header {
+        padding: 1.5rem 8%;
+    }
+
+    .contact-section {
+        max-width: 1400px;
+    }
+
+    .sitemap-footer {
+        padding: 4rem 8%;
+    }
+}
+
+.nav-icons{
+    display: none;
+}

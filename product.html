@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
+    <script src="script.js/product.js"></script>
     <header class="header">
         <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
         <div class="logo">Skin-Pore-Fection</div>
         
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="product.html" class="active">Products</a></li> 
+                <li><a href="product.html" class="active">Products</a></li>
                 <li><a href="faqs.html">FAQs</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -27,8 +31,11 @@
                 <span id="search-icon" title="Search"><i class="fas fa-search"></i></span>
                 <input type="text" placeholder="Search products..." id="search-input">
             </div>
-            <span id="cart-icon" title="Cart"><i class="fas fa-shopping-cart"></i></span>
+            <span id="cart-icon" title="Cart" style="position: relative;">
+            <i class="fas fa-shopping-cart"></i>
             <span id="cart-count-badge" class="cart-count-badge">0</span>
+            </span>
+
             <a href="product.html" class="shop-now-button">Shop Now</a>
         </div>
     </header>
@@ -177,7 +184,6 @@
             </div>
             <div id="cartSummary" style="display: none;">
                 <p>Subtotal: <span id="cartSubtotal">$0.00</span></p>
-                <button id="clear-cart-btn" class="clear-cart-btn">Clear Cart</button>
                 
                 <a href="proceed.html">
                     <button class="checkout-btn">Proceed to Checkout</button>

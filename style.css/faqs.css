@@ -535,3 +535,108 @@ body {
         margin-bottom: 0;
     }
 }
+
+@media (max-width: 768px) {
+
+    /* ---------- HEADER ---------- */
+    .header {
+        padding: 0.8rem 1rem;
+    }
+
+    .logo {
+        margin-left: 0;
+        font-size: 1.2rem;
+    }
+
+    /* Show hamburger */
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Hide nav links by default */
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 0;
+        display: none;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+    }
+
+    /* Show menu when toggled */
+    .header.mobile-menu-open .nav-links {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+    }
+
+    /* Icons + button layout */
+    .nav-icons {
+        gap: 0.6rem;
+        font-size: 1.1rem;
+    }
+
+    .shop-now-button {
+        display: none; /* hide on small screens */
+    }
+
+    /* Search input smaller */
+    #search-input.open {
+        width: 150px;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-main-heading {
+        font-size: 2rem;
+        margin-top: 120px;
+    }
+
+    .faq-subtitle {
+        font-size: 1rem;
+    }
+}
+
+
+@media (max-width: 1024px) {
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .nav-links {
+        gap: 1.2rem;
+    }
+
+    .shop-now-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    #search-input.open {
+        width: 180px;
+    }
+
+    .faq-main-heading {
+        font-size: 2.5rem;
+    }
+}
+
+
+@media (min-width: 1400px) {
+
+    .header {
+        padding: 1.5rem 8%;
+    }
+
+    .faq-section {
+        max-width: 1200px;
+    }
+}

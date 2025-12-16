@@ -25,31 +25,37 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    
     <header class="header">
         <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
         <div class="logo">Skin-Pore-Fection</div>
+        
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html" >Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="product.html">Products</a></li>
-                <li><a href="faqs.html" class="active">FAQ's</a></li>
+                <li><a href="faqs.html" class="active">FAQs</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        
-
-        <div class="nav-icons">
-            
+        <!-- <div class="nav-icons">
             <div class="search-box">
-                <span id="search-icon" title="Search"><a href="product.html" style="color: black;"><i class="fas fa-search"></i></a></span>
-                
+                <span id="search-icon" title="Search"><i class="fas fa-search"></i></span>
                 <input type="text" placeholder="Search products..." id="search-input">
             </div>
-            
-            <span title="Cart"><i class="fas fa-shopping-cart"></i></span>
-            <a href="product.html" class="shop-now-button">Shop Now</a> 
-            </div>
+            <span id="cart-icon" title="Cart" style="position: relative;">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count-badge" class="cart-count-badge">0</span>
+            </span> -->
+
+            <a href="product.html" class="shop-now-button">Shop Now</a>
+        </div>
     </header>
 
 

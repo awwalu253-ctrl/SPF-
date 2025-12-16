@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Skin-Pore-Fection (Nigeria)</title>
     <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
 
     <link rel="stylesheet" href="/style.css/proceed.css">
     
@@ -14,8 +14,14 @@
 <body>
     
     <header class="header">
-        <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="">
+        <img src="../images/spf_logo-removebg-preview.png" width="80px" alt="SPF Logo">
+        
         <div class="logo">Skin-Pore-Fection</div>
+        
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+
         <nav>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -26,18 +32,15 @@
             </ul>
         </nav>
         
-
         <div class="nav-icons">
-            
             <div class="search-box">
                 <span id="search-icon" title="Search"><a style="color: black;" href="product.html"><i class="fas fa-search"></i></a></span>
-                
                 <input type="text" placeholder="Search products..." id="search-input">
             </div>
-            
             <span title="Cart"><i class="fas fa-shopping-cart"></i></span>
             <a href="product.html" class="shop-now-button">Shop Now</a> 
-            </div>
+        </div>
+        
     </header>
 
     <main class="checkout-container">
@@ -50,20 +53,19 @@
                 <section class="contact-section">
                     <h2>Contact Information</h2>
                     <form>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number (+234)" required>
+                        <input type="email" id="emailAddress" placeholder="Email Address" required>
+                        <input type="tel" id="phoneNumber" placeholder="Phone Number (+234)" required>
                     </form>
                 </section>
 
                 <section class="shipping-section">
                     <h2>Shipping Address</h2>
-                    <form>
-                        <div class="name-fields">
-                            <input type="text" placeholder="First Name" required>
-                            <input type="text" placeholder="Last Name" required>
+                    <form id="shipping-form"> <div class="name-fields">
+                            <input type="text" id="firstName" placeholder="First Name" required>
+                            <input type="text" id="lastName" placeholder="Last Name" required>
                         </div>
-                        <input type="text" placeholder="Street Address / House No." required>
-                        <input type="text" placeholder="Nearest Landmark (Optional)">
+                        <input type="text" id="streetAddress" placeholder="Street Address / House No." required>
+                        <input type="text" id="landmark" placeholder="Nearest Landmark (Optional)">
                         
                         <select id="state-selector" required>
                             <option value="">Select State...</option>
@@ -74,7 +76,7 @@
                             <option value="Kano">Kano</option>
                             </select>
 
-                        <input type="text" placeholder="City / Local Government Area (LGA)" required>
+                        <input type="text" id="city" placeholder="City / Local Government Area (LGA)" required>
                         
                         <input type="hidden" value="Nigeria">
                         <p class="country-display">Shipping to: Nigeria</p>
@@ -83,16 +85,17 @@
 
                 <section class="payment-section">
                     <h2>Payment Method</h2>
-                    <div class="payment-options">
-                        <label>
-                            <input type="radio" name="payment_method" value="bank_transfer" > Bank Transfer (Pre-payment)
-                        </label>
-                        <label>
-                            <input type="radio" name="payment_method" value="cash_on_delivery" > Cash on Delivery (CoD)
-                        </label>
-                        
-                            <a href="banks.html" target="_blank" class="payment-instructions-link">Make Payments to our available Bank Account</a>
-                    </div>
+                    <form id="payment-form"> <div class="payment-options">
+                            <label>
+                                <input type="radio" name="payment_method" value="bank_transfer" > Bank Transfer (Pre-payment)
+                            </label>
+                            <label>
+                                <input type="radio" name="payment_method" value="cash_on_delivery" > Cash on Delivery (CoD)
+                            </label>
+                            
+                                <a href="banks.html" target="_blank" class="payment-instructions-link">Make Payments to our available Bank Account</a>
+                        </div>
+                    </form>
                     
                     <form id="order-form">
                         <button class="complete-order-btn" type="submit">Place Order - Pay ₦<span id="button-total-price">0.00</span></button>

@@ -1004,12 +1004,14 @@ a {
         bottom: -25px; 
         right: 50%;
         transform: translateX(50%);
+        z-index: 0;
     }
 
     .bio-card {
         width: 90%; /* Make the bio card smaller */
         margin: 10% auto; /* Center it more on the screen */
         height: 80vh;
+        margin-top: 100px
     }
 
     /* Footer (already good, but ensure everything stacks) */
