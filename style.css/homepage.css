@@ -1,0 +1,506 @@
+:root {
+    --color-primary: #1e3a8a;
+    --color-secondary: #059669;
+    --color-text-dark: #333;
+    --color-text-light: #fff;
+    --color-background-light: #f9fafb;
+    --color-cta-button: #e81f5c;
+    --color-footer-bg: #1f2937;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    line-height: 1.6;
+}
+
+/* --- Header / Navigation (CORRECTED: Transparent-to-White) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* STARTING STATE: Transparent background, dark text/icons */
+    background-color: transparent; 
+    padding: 1.5rem 5%; /* Initial large padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: none; /* No shadow initially */
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+    /* SCROLLED STATE: Solid white background, reduced padding, and a shadow */
+    padding: 0.75rem 5%;
+    background-color: #fff;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Ensure the logo, links, and icons are dark */
+.logo, 
+.nav-links a,
+.nav-icons span {
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    margin-left: -100px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--color-cta-button);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text-dark);
+}
+
+/* --- Inline Search Field (Flexbox Magic) --- */
+.nav-icons {
+    display: flex; /* Makes icons and search box align horizontally */
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    /* Temporarily remove default gap so icon and input are right next to each other */
+}
+
+/* 1. Initial State: Input is hidden */
+#search-input {
+    border: none;
+    border-bottom: 2px solid transparent; /* Start with transparent border */
+    font-size: 1rem;
+    padding: 0;
+    margin-left: 0.5rem;
+    outline: none;
+    
+    /* CRITICAL: Starts at 0 width and 0 padding */
+    width: 0; 
+    padding-left: 0;
+    
+    /* Animation transition property */
+    transition: width 0.3s ease-out, border-color 0.3s ease, padding 0.3s ease;
+    border-radius: 6px;
+}
+
+#search-input::placeholder{
+    color: #a0a0a0;
+    font-weight: 400;
+    opacity: 1;
+    transition:  color 0.3s ease;
+}
+
+#search-input:focus::placeholder{
+    color: #cccccc;
+}
+
+/* 2. Target State: Input slides open and gains focus styles */
+#search-input.open {
+    width: 200px; /* Desired width when open (Adjust this value) */
+    border-bottom-color: var(--color-cta-button); /* Underline appears */
+    padding-left: 5px;
+    padding-bottom: 5px; /* Add padding for the typing space */
+}
+
+/* Optional: Make the search icon interactive on its own */
+#search-icon {
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+#search-icon:hover {
+    color: var(--color-cta-button);
+    transform: scale(1.1);
+}
+
+/* Fix: Adjust the header Z-index */
+.header {
+    /* ... existing styles ... */
+    z-index: 1000;
+}
+.header.scrolled {
+    /* ... existing styles ... */
+    z-index: 1000; /* Ensure the fixed header stays above the overlay when closed */
+}
+
+.shop-now-button {
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    height: 50px;
+    font-weight: bold;
+    margin-left: 1rem;
+    transition: background-color 0.3s ease;
+}
+.shop-now-button:hover {
+    background-color: #d11c4e;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* overflow: hidden; */
+    overflow-x: visible;
+    padding-top: 0; /* Allows header to float over hero */
+}
+
+/* Background/Visual Effect (Subtle Movement Animation) */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(230, 245, 250, 0.5), rgba(150, 200, 220, 0.5)), 
+                url('https://picsum.photos/seed/skincare/1920/1080');
+    background-size: cover;
+    background-position: center bottom;
+    z-index: 1;
+    animation: subtle-pan 20s infinite alternate ease-in-out;
+}
+
+@keyframes subtle-pan {
+    0% { background-position: center bottom; }
+    100% { background-position: 50.5% bottom; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 80%;
+}
+
+.hero-text .cta-button {
+    padding: 0.8rem 2rem;
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 5px 15px rgba(232, 31, 92, 0.3);
+}
+
+.hero-text .cta-button:hover {
+    background-color: #d11c4e;
+    transform: translateY(-2px);
+}
+
+.hero-tagline {
+    background-color: rgba(61, 61, 61, 0.85);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    align-self: flex-end;
+    margin-bottom: -80px;
+    text-align: center;
+}
+
+.hero-tagline strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-cta-button);
+}
+
+.hero-tagline p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--color-text-light);
+}
+
+/* --- Products Section --- */
+.products-section {
+    padding: 6rem 5%;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.product-info .price {
+    font-weight: bold;
+    color: var(--color-cta-button);
+}
+
+/* --- Secondary Button (View All Products) Style --- */
+.secondary-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-text-dark); /* Dark text */
+    background-color: transparent;
+    border: 2px solid var(--color-text-dark); /* Dark border */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+}
+
+.secondary-button:hover {
+    color: var(--color-text-light); /* Light text on hover */
+    background-color: var(--color-text-dark); /* Dark background on hover */
+}
+
+/* Ensure the products section centers the button correctly */
+.products-section {
+    /* ... existing styles ... */
+    text-align: center; 
+}
+
+/* --- CTA Footer Section --- */
+.cta-footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-text-light);
+    padding: 5rem 5%;
+    text-align: center;
+}
+
+.cta-footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-footer h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.cta-footer p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+}
+
+.cta-footer .cta-button {
+    background-color: var(--color-cta-button);
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 1rem 3rem;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 5px 15px rgba(232, 31, 92, 0.3);
+}
+
+.cta-footer .cta-button:hover {
+    background-color: #d11c4e;
+    transform: translateY(-2px);
+}
+
+/* --- Footer (Sitemap/Links) --- */
+.sitemap-footer {
+    background-color: #111827;
+    color: #9ca3af;
+    padding: 4rem 5%;
+    font-size: 0.9rem;
+}
+
+.sitemap-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+}
+
+.sitemap-grid h4 {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sitemap-grid ul {
+    list-style: none;
+}
+
+.sitemap-grid ul li {
+    margin-bottom: 0.5rem;
+}
+
+.sitemap-grid a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sitemap-grid a:hover {
+    color: var(--color-text-light);
+}
+
+.copyright {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 10vh;
+    }
+    .hero-text {
+        max-width: 90%;
+    }
+    .hero-text p {
+        max-width: 100%;
+    }
+    .hero-tagline {
+        align-self: center;
+        margin-top: 3rem;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+     /* Force white background on mobile for readability */
+    .header {
+        background-color: #fff;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+        padding: 1rem 5%;
+        flex-direction: column;
+    }
+    .nav-links {
+        display: none;
+    }
+    .header.scrolled {
+         padding: 1rem 5%;
+    }
+    .nav-icons {
+        margin-top: 0.5rem;
+    }
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+    .products-section h2, .cta-footer h2 {
+        font-size: 2rem;
+    }
+    .sitemap-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
