@@ -38,6 +38,10 @@ body {
     transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
+.menu-toggle{
+    display: none;
+}
+
 .header.scrolled {
     /* SCROLLED STATE: Solid white background, reduced padding, and a shadow */
     padding: 0.75rem 5%;
@@ -475,6 +479,11 @@ body {
         display: none;
     }
 
+    
+.nav-icons{
+    display: none;
+    }
+
     .header.mobile-menu-open nav {
         display: block;
     }
@@ -536,8 +545,4 @@ body {
     .sitemap-footer {
         padding: 4rem 8%;
     }
-}
-
-.nav-icons{
-    display: none;
 }

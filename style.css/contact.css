@@ -563,6 +563,8 @@ a {
     }
 }
 
+
+
 @media (max-width: 576px) {
 
     /* ---------- HEADER ---------- */
@@ -603,6 +605,7 @@ a {
     .nav-icons {
         gap: 0.6rem;
         font-size: 1.1rem;
+        display: none;
     }
 
     .shop-now-button {
@@ -635,8 +638,13 @@ a {
     .footer-logo-text {
         font-size: 2rem;
     }
+
 }
 
+
+.menu-toggle{
+    display: none;
+}
 
 
 @media (max-width: 992px) {
@@ -683,6 +691,10 @@ a {
     .contact-title {
         font-size: 2.5rem;
     }
+
+    .nav-icons{
+    display: none;
+    }
 }
 
 
@@ -717,6 +729,3 @@ a {
     }
 }
 
-.nav-icons{
-    display: none;
-}

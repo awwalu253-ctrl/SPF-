@@ -492,6 +492,10 @@ body {
     margin: 0 auto;
 }
 
+.menu-toggle{
+    display: none;
+}
+
 /* --- Footer Responsive Adjustments --- */
 @media (max-width: 992px) {
     .sitemap-grid {
@@ -582,6 +586,7 @@ body {
     .nav-icons {
         gap: 0.6rem;
         font-size: 1.1rem;
+        display: none;
     }
 
     .shop-now-button {
