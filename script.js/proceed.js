@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     // --- 4. Checkout / Cart Functionality ---
     // --------------------------------------------------------------------------
-    const WHATSAPP_NUMBER = '2349138577860';
+    // NOTE: Changed WhatsApp number to the one provided in the previous response
+    const WHATSAPP_NUMBER = '2348028607360'; 
     const FIXED_SHIPPING_FEE = 1500;
     const CURRENCY_SYMBOL = '₦';
     let cart = JSON.parse(localStorage.getItem('reveddyCart')) || [];
@@ -124,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Gather Form Data
             const firstName = document.querySelector('input[placeholder="First Name"]').value;
             const lastName = document.querySelector('input[placeholder="Last Name"]').value;
             const phone = document.querySelector('input[placeholder="Phone Number (+234)"]').value;
@@ -134,11 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const paymentMethodElement = document.querySelector('input[name="payment_method"]:checked');
             const paymentMethod = paymentMethodElement ? paymentMethodElement.value : null;
 
-            if (!firstName || !phone || !streetAddress || !state || !city) {
-                alert('Please fill in all required fields.');
+            if (!firstName || !phone || !streetAddress || !state || !city || !paymentMethod) {
+                alert('Please fill in all required fields and select a payment method.');
                 return;
             }
 
+            // Construct WhatsApp Message
             let orderMessage = `*NEW SKINCARE ORDER!*%0A---%0A`;
             orderMessage += `*CUSTOMER INFO*%0AName: ${firstName} ${lastName}%0APhone: ${phone}%0APayment: ${paymentMethod === 'cash_on_delivery' ? 'Cash on Delivery (CoD)' : 'Bank Transfer (Pre-payment)'}%0A%0A`;
             orderMessage += `*SHIPPING ADDRESS*%0AAddress: ${streetAddress}%0A`;
@@ -159,8 +162,19 @@ document.addEventListener('DOMContentLoaded', () => {
             orderMessage += `%0A*ORDER SUMMARY*%0ASubtotal: ${formatNaira(subtotal)}%0AShipping Fee: ${formatNaira(FIXED_SHIPPING_FEE)}%0A*TOTAL AMOUNT DUE: ${formatNaira(total)}*%0A%0A`;
 
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${orderMessage}`;
-            localStorage.removeItem('reveddyCart');
+            
+            // 1. Open WhatsApp chat in a new tab
             window.open(whatsappUrl, '_blank');
+            
+            // 2. Clear the cart (so the cart is empty if they refresh the success page)
+            localStorage.removeItem('reveddyCart');
+            
+            // 3. Redirect to the order success page after a short delay
+            // The delay gives the browser a moment to handle the window.open()
+            setTimeout(() => {
+                window.location.href = 'order_success.html'; // <<< CHANGE THIS FILENAME IF NECESSARY
+            }, 500); // 500ms delay
+
         });
     }
 

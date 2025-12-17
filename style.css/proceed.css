@@ -418,6 +418,43 @@ body {
     background-color: #f82a68;
 }
 
+.success-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 9999;
+}
+
+.success-screen.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-box {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    animation: pop 0.5s ease;
+}
+
+.checkmark {
+    font-size: 50px;
+    color: green;
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); }
+    to { transform: scale(1); }
+}
+
+
 @media (max-width: 992px) {
 
     /* HEADER */
