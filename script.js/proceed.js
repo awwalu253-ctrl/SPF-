@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. Checkout / Cart Functionality ---
     // --------------------------------------------------------------------------
     // NOTE: Changed WhatsApp number to the one provided in the previous response
-    const WHATSAPP_NUMBER = '2349138577860'; 
+    const WHATSAPP_NUMBER = '2349077661358'; 
     const FIXED_SHIPPING_FEE = 1500;
     const CURRENCY_SYMBOL = '₦';
     let cart = JSON.parse(localStorage.getItem('reveddyCart')) || [];
